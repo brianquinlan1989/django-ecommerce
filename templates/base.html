@@ -1,6 +1,7 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,13 @@
     {% block head_style %}
     <link rel="stylesheet" href="https://bootswatch.com/3/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endblock head_style %}
-    
-    {% block head_js %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock head_style %} {% block head_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
     {% endblock head_js %}
 </head>
+
 <body>
     <!-- Fixed masthead -->
     <nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
@@ -32,35 +31,39 @@
                 </button>
                 <a class="navbar-brand" href="/">ECommerce</a>
             </div>
-            
+
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                    {%  else %}
-                        <li><a href="{% url 'signup' %}"><i class="fa fa-user-plus"></i> Sign up</a></li>
-                        <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}"><i class="fa fa-user-plus"></i> Sign up</a></li>
+                    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
                     {% endif %}
+                    <li><a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart 
+                    {% if items_in_cart > 0 %}
+                        <label class="badge badge-light">{{ items_in_cart }}</label>
+                    {% endif %}
+                    </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     {% if messages %}
-        <div class="alert alert-success">
-            <div class="messages">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
+    <div class="alert alert-success">
+        <div class="messages">
+            {% for message in messages %} {{ message }} {% endfor %}
         </div>
+    </div>
     {% endif %}
-    
+
     <div class="container">
         <br>
         <div class="row">
-        {% block content %} {% endblock %}
+            {% block content %} {% endblock %}
         </div>
     </div>
     <footer>
@@ -69,4 +72,5 @@
         </div>
     </footer>
 </body>
+
 </html>

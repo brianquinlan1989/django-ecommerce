@@ -19,6 +19,7 @@ from django.conf import settings
 from django.urls import path, include
 from accounts.views import signup, show_profile
 from products.views import product_list, product_detail
+from cart.views import add_to_cart, view_cart, remove_cart_item
 
 
 urlpatterns = [
@@ -29,4 +30,7 @@ urlpatterns = [
     path('accounts/signup/', signup, name='signup'),
     path('media/<path:path>', serve, {'document_root': settings. MEDIA_ROOT}),
     path('products/product_detail/id/<int:id>', product_detail, name="product_detail"),
+    path('cart/add/', add_to_cart, name="add_to_cart"),
+    path('cart/view/', view_cart, name="view_cart"),
+    path('cart/remove/', remove_cart_item, name="remove_cart_item")
 ]
