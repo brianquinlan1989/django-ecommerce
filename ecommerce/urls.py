@@ -20,6 +20,7 @@ from django.urls import path, include
 from accounts.views import signup, show_profile
 from products.views import product_list, product_detail
 from cart.views import add_to_cart, view_cart, remove_cart_item
+from checkout.views import show_checkout
 
 
 urlpatterns = [
@@ -32,5 +33,6 @@ urlpatterns = [
     path('products/product_detail/id/<int:id>', product_detail, name="product_detail"),
     path('cart/add/', add_to_cart, name="add_to_cart"),
     path('cart/view/', view_cart, name="view_cart"),
-    path('cart/remove/', remove_cart_item, name="remove_cart_item")
+    path('cart/remove/', remove_cart_item, name="remove_cart_item"),
+    path('checkout/show_checkout', show_checkout, name="show_checkout")
 ]
