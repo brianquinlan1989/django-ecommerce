@@ -19,9 +19,23 @@
                 <input type="number" name="quantity" value="1"/>
                 <input class="btn btn-primary" type="submit" value="Add to cart"/>
             </form>
+            <div>
+                 <a href="{% url 'make_review' product.id %}" class="btn btn-primary">Add Review</a>
+                
+            </div>
+           
             
         </div>
     </div>
+</div>
+
+<div>
+    <h2>Reviews</h2>
+    {% for r in product.reviews.all %}
+    <p>{{r.title}}
+        {{r.content}}
+    </p>
+    {% endfor %}
 </div>
 
 {% endblock content %}

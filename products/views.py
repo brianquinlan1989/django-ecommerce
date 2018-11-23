@@ -8,5 +8,6 @@ def product_list(request):
     
 def product_detail(request, id):
     product =  get_object_or_404(Product, pk=id)
+    # reviews = Review .objects.filter(product_id=id)
     return render(request, "products/product_details.html", {"product":product})
     
